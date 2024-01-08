@@ -1,11 +1,11 @@
 export const interviewLanguageOptions = [
   {
     label: "English",
-    value: "en",
+    value: "Engilish",
   },
   {
     label: "Hindi",
-    value: "hi",
+    value: "Hindi",
   },
 ];
 
@@ -38,29 +38,29 @@ export const interviewModeOptions = [
 export const genderOptions = [
   {
     label: "Male",
-    value: "m",
+    value: "Male",
   },
   {
     label: "Female",
-    value: "f",
+    value: "Female",
   },
   {
     label: "Non Binary",
-    value: "nb",
+    value: "Non Binary",
   },
 ];
 
 export const urgencyOptions = [
   {
     label: "Urgent",
-    value: "0",
+    value: "Urgent",
   },
   {
     label: "Immediate joining",
-    value: "1",
+    value: "Immediate Joining",
   },
   {
     label: "Relaxed",
-    value: "2",
+    value: "Relaxed",
   },
 ];

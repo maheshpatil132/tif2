@@ -22,7 +22,6 @@ const KeyValue: React.FC<{
   title: string;
   value?: string;
 }> = ({ title, value }) => {
-  console.log(value);
   return (
     <Box w="100%">
       <Text fontSize=".875rem" color="gray" mb="8px">
@@ -37,7 +36,6 @@ const KeyValue: React.FC<{
 
 const PreviewCard: React.FC = () => {
   const {state} = useData()
-  console.log(state);
   return (
     <Box p="1rem">
       <Box borderRadius="10px" bgColor="gray.100" height="fit-content">

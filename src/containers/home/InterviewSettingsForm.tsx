@@ -14,7 +14,29 @@ import * as Yup from "yup";
 
 const InterviewDetailsForm: React.FC = () => {
   const { state, setState, setInd } = useData();
+
+  const handleSelectChange = (
+    fieldName: keyof IInterViewSettings,
+    value: any
+  ) => {
+
+    handleChange({
+      target: { name: fieldName, value },
+    });
+
+    setState((prev) => ({
+      ...prev,
+      interviewSettings: {
+        ...prev.interviewSettings,
+        [fieldName]: value,
+      },
+    }));
+
+    console.log(state);
+  };
+
   const {
+    handleChange,
     errors,
     touched,
     handleSubmit,
@@ -28,10 +50,15 @@ const InterviewDetailsForm: React.FC = () => {
     },
     validationSchema: Yup.object().shape({
       interviewMode: Yup.string().required("interviewMode is required"),
-      interviewDuration: Yup.string().required("interviewDuration is required"),
-      interviewLanguage: Yup.string().required("interviewLanguage is required"),
+      interviewDuration: Yup.string().required(
+        "interviewDuration is required"
+      ),
+      interviewLanguage: Yup.string().required(
+        "interviewLanguage is required"
+      ),
     }),
     onSubmit: (values) => {
+      console.log(values);
       setState((prev) => ({
         ...prev,
         interviewSettings: values,
@@ -48,15 +75,7 @@ const InterviewDetailsForm: React.FC = () => {
           placeholder="Select interview mode"
           name="interviewMode"
           options={interviewModeOptions}
-          onChange={(value:any) =>
-            setState((prev) => ({
-              ...prev,
-              interviewSettings: {
-                ...prev.interviewSettings,
-                interviewMode: value,
-              },
-            }))
-          }
+          onChange={(name:any ,value: any) => handleSelectChange(name, value)}
           onBlur={setFieldTouched}
           value={values?.interviewMode}
           error={errors?.interviewMode}
@@ -67,14 +86,8 @@ const InterviewDetailsForm: React.FC = () => {
           placeholder="Select interview duration"
           name="interviewDuration"
           options={interviewDurationOptions}
-          onChange={(value:any) =>
-            setState((prev) => ({
-              ...prev,
-              interviewSettings: {
-                ...prev.interviewSettings,
-                interviewDuration: value,
-              },
-            }))
+          onChange={(name:any , value: any) =>
+            handleSelectChange(name, value)
           }
           onBlur={setFieldTouched}
           value={values?.interviewDuration}
@@ -82,18 +95,12 @@ const InterviewDetailsForm: React.FC = () => {
           touched={touched?.interviewDuration}
         />
         <FormSelect
-          label="Job Location"
+          label="Interview Language"
           name="interviewLanguage"
           placeholder="Select interview language"
           options={interviewLanguageOptions}
-          onChange={(value:any) =>
-            setState((prev) => ({
-              ...prev,
-              interviewSettings: {
-                ...prev.interviewSettings,
-                interviewLanguage: value,
-              },
-            }))
+          onChange={(name :any ,value: any) =>
+            handleSelectChange(name, value)
           }
           onBlur={setFieldTouched}
           error={errors.interviewLanguage}
